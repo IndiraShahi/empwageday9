@@ -3,18 +3,25 @@
 echo "Welcome to Employee Wage computation Program on Master branch"
 
 Wage_Per_Hour=20
-Full_Day_Hour=8
+Max_Work_Hour=40
 Part_Time_Employee=1
-Part_Time_Hour=8
-a=$(( RANDOM%2 ))
-echo $a
-if [ $a -eq 1 ]
-then
-      echo "employee is present"
-else
-      echo "employee is absent"
-fi
-salary=$(( $Wage_Per_Hour * $Full_Day_Hour ))
+Full_Time_Employee=2
+No_Of_Working_Days=5
+totalWorkingDays=0
+totalWorkingHours=0
+while [ $totalWorkingDays -lt $No_Of_Working_Days ] && [ $totalWorkingHours -lt $Max_Work_Hour ]
+do
+empCheck=$(( RANDOM%3 ))
+totalWorkingDays=$(( $totalWorkingDays + 1 ))
+case $empCheck in
+        $Part_Time_Employee)
+                empHrs=8   ;;
+        $Full_Time_Employee)
+                empHrs=4   ;;
+        *)
+                empHrs=0   ;;
+esac
+totalWorkingHours=$(( $totalWorkingHours + $empHrs ))
+done
+salary=$(( $empHrs * $Wage_Per_Hour ))
 echo $salary
-Part_Time_Salary=$(( $Wage_Per_Hour * $Part_Time_Hour ))
-echo $Part_Time_Salary
