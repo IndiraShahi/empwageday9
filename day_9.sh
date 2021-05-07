@@ -42,7 +42,7 @@ do
 done
 
 salary="$(calWage $totalWorkingHours)"
-echo salary:$salary dailyWages:${dailyWage[@]}
+echo Totaldays:$totalWorkingDays dailyWages:${dailyWage[@]} salary:$salary
 
 
 
