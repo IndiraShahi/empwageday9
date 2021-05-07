@@ -6,7 +6,7 @@ IS_PRESENT_FULL_TIME=1
 IS_PRESENT_PART_TIME=2
 EMP_RATE_PER_HR=20
 NO_OF_WORKING_DAYS=20
-MAX_WORK_HOURS=80
+MAX_WORK_HOURS=100
 
 
 totalWorkingDays=0
@@ -19,10 +19,17 @@ function getWorkHrs(){
                 $IS_PRESENT_FULL_TIME ) empHrs=8 ;;
                 $IS_PRESENT_PART_TIME ) empHrs=4 ;;
                 *) empHrs=0     ;;
-         esac
-         echo $empHrs
+        esac
+        echo $empHrs
+}
+function calWage(){
+         local workHours=$1
+         local salary=$(( $EMP_RATE_PER_HR * $workHours ))
+         echo $salary
 }
 count=0
+
+
 while [ $totalWorkingDays -lt $NO_OF_WORKING_DAYS ] && [ $totalWorkingHours -lt $MAX_WORK_HOURS ]
 
 do
@@ -30,8 +37,21 @@ do
         totalWorkingDays=$(( $totalWorkingDays + 1 ))
         empHrs="$( getWorkHrs $empCheck )"
         totalWorkingHours=$(( $totalWorkingHours + $empHrs ))
+        dailyWage["$totalWorkingDays"]="$(calWage $empHrs)"
+
 done
-echo "$totalWorkingHours: is total work hours"
+
+salary="$(calWage $totalWorkingHours)"
+echo salary:$salary dailyWages:${dailyWage[@]}
+
+
+
+
+
+
+
+
+
 
 
 
