@@ -4,6 +4,8 @@ echo "Welcome to Employee Wage computation Program on Master branch"
 
 Wage_Per_Hour=20
 Full_Day_Hour=8
+Part_Time_Employee=1
+Part_Time_Hour=8
 a=$(( RANDOM%2 ))
 echo $a
 if [ $a -eq 1 ]
@@ -14,3 +16,5 @@ else
 fi
 salary=$(( $Wage_Per_Hour * $Full_Day_Hour ))
 echo $salary
+Part_Time_Salary=$(( $Wage_Per_Hour * $Part_Time_Hour ))
+echo $Part_Time_Salary
